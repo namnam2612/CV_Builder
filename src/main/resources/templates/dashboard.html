@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - CV Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+<nav class="bg-white shadow-md">
+    <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <h1 class="text-xl font-bold text-gray-800">CV Builder</h1>
+        <button id="logout-btn" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Đăng xuất</button>
+    </div>
+</nav>
+
+<div class="container mx-auto p-6">
+    <div class="flex justify-between items-center mb-6">
+        <h2 class="text-3xl font-bold text-gray-800">CV của bạn</h2>
+        <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+            + Tạo CV mới
+        </button>
+    </div>
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <ul class="divide-y divide-gray-200">
+            <li th:each="cv : ${cvs}" class="p-4 flex justify-between items-center hover:bg-gray-50">
+                <div>
+                    <p class="font-semibold text-lg text-gray-900" th:text="${cv.fullName}">Tên CV</p>
+                    <p class="text-sm text-gray-600" th:text="${cv.jobTitle} ?: 'Chưa có vị trí'">Vị trí</p>
+                </div>
+                <div class="space-x-2">
+                    <button class="text-blue-500 hover:underline">Sửa</button>
+                    <button class="text-green-500 hover:underline">Xuất PDF</button>
+                    <button class="text-red-500 hover:underline">Xóa</button>
+                </div>
+            </li>
+            <li th:if="${#lists.isEmpty(cvs)}" class="p-4 text-center text-gray-500">
+                Bạn chưa tạo CV nào.
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    // Thêm token vào các request API
+    const token = localStorage.getItem('jwt_token');
+    if (!token) {
+        window.location.href = '/login';
+    }
+
+    // Đăng xuất
+    document.getElementById('logout-btn').addEventListener('click', () => {
+        localStorage.removeItem('jwt_token');
+        window.location.href = '/login';
+    });
+
+    // Thêm logic để gọi API xóa, sửa, xuất PDF tại đây
+</script>
+</body>
+</html>
