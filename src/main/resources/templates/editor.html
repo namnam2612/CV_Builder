@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CV Editor</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body class="bg-gray-100">
+
+<header class="bg-white shadow-md sticky top-0 z-10">
+    <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <a th:href="@{/dashboard}" class="text-gray-600 hover:text-gray-800 font-semibold">&larr; Quay lại</a>
+        <h1 class="text-xl font-bold text-gray-800">Trình chỉnh sửa CV</h1>
+        <button class="bg-green-600 text-white font-semibold px-6 py-2 rounded-lg hover:bg-green-700">Lưu CV</button>
+    </div>
+</header>
+
+<div class="flex h-screen">
+    <div class="w-1/2 p-8 bg-gray-50 border-r border-gray-200 overflow-y-auto">
+        <h2 class="text-2xl font-bold mb-6">Điền thông tin của bạn</h2>
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Họ và tên</label>
+                <input type="text" class="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm"/>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-1/2 p-8 bg-white overflow-y-auto">
+        <div class="sticky top-8">
+            <h1 class="text-4xl font-bold text-center">Nguyễn Văn A</h1>
+            <h2 class="text-xl text-center text-gray-600">Software Engineer</h2>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -134,6 +134,31 @@
 
 	<build>
 		<plugins>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>tailwind-css</id>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<phase>generate-resources</phase>
+						<configuration>
+							<executable>${project.basedir}/tools/tailwindcss.exe</executable>
+							<arguments>
+								<argument>-i</argument>
+								<argument>${project.basedir}/src/main/resources/css/input.css</argument>
+								<argument>-o</argument>
+								<argument>${project.basedir}/src/main/resources/static/css/styles.css</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

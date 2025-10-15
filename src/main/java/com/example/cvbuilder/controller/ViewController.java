@@ -1,3 +1,4 @@
+// src/main/java/com/example/cvbuilder/controller/ViewController.java
 package com.example.cvbuilder.controller;
 
 import com.example.cvbuilder.dto.CVResponseDTO;
@@ -38,11 +39,11 @@ public class ViewController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserPrincipal userPrincipal) {
             Long userId = userPrincipal.getId();
-            List<CV> cvs = cvService.getCVsByUser(userId); // <-- đảm bảo dòng này trả về đúng
+            List<CV> cvs = cvService.getCVsByUser(userId);
             List<CVResponseDTO> dtoList = cvs.stream().map(CVResponseDTO::new).toList();
-            model.addAttribute("cvList", dtoList); // <-- kiểm tra xem dtoList có dữ liệu không
+            model.addAttribute("cvList", dtoList);
         } else {
-            model.addAttribute("cvList", List.of()); // không đăng nhập
+            model.addAttribute("cvList", List.of());
         }
         return "my-cvs";
     }
@@ -50,5 +51,9 @@ public class ViewController {
     @GetMapping("/create-cv-ai")
     public String createCvAi() { return "create-cv-ai"; }
 
-
+    // ✅ ENDPOINT MỚI BẠN VỪA THÊM VÀO
+    @GetMapping("/editor")
+    public String editorPage() {
+        return "editor";
+    }
 }

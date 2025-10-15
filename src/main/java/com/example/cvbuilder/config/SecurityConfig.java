@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()
-                        .requestMatchers("/login", "/register", "/create-cv", "/my-cvs").permitAll()
+                        .requestMatchers("/login", "/register", "/create-cv", "/my-cvs","/editor").permitAll()
                         .requestMatchers("/api/cv/**").authenticated()
                         .anyRequest().authenticated()
                 )
