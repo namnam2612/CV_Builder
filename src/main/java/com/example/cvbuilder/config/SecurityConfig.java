@@ -38,19 +38,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        // Cho phép truy cập API và các trang giao diện web
-                        .requestMatchers("/api/auth/**", "/", "/login", "/register", "/css/**", "/js/**").permitAll()
-                        .requestMatchers("/api/cv/**").authenticated()
-                        .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
-
 }
