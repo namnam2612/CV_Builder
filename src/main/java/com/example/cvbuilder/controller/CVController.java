@@ -4,6 +4,7 @@ import com.example.cvbuilder.model.User;
 import com.example.cvbuilder.service.CVService;
 import com.example.cvbuilder.service.PdfExportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +26,10 @@ public class CVController {
     private AIGenerationService aiGenerationService;
 
     // === Tạo mới CV ===
+    @PostMapping(produces = "application/json")
     public ResponseEntity<CVResponseDTO> createCV(@RequestBody CV cv) {
         CV created = cvService.createCV(cv);
+        return ResponseEntity.ok().body(new CVResponseDTO(created));
     }
 
     // === Lấy tất cả CV ===

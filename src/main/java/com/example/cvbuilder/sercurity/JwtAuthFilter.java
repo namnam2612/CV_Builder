@@ -92,6 +92,13 @@ public class JwtAuthFilter extends OncePerRequestFilter {  //OncePerRequestFilte
                                     FilterChain filterChain) throws ServletException, IOException {
 
         String path = request.getServletPath();
+
+        // ✅ Bỏ qua filter cho tất cả request KHÔNG bắt đầu bằng /api/
+        if (!path.startsWith("/api/")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
         System.out.println("📥 [Filter] Yêu cầu tới: " + path);
 
         // Bỏ qua filter cho endpoint không cần bảo mật

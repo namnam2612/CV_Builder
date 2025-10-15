@@ -1,3 +1,5 @@
+package com.example.cvbuilder;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,4 +9,5 @@ public class CvbuilderApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CvbuilderApplication.class, args);
 	}
+
 }

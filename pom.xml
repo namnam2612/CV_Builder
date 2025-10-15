@@ -39,6 +39,7 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -109,6 +110,22 @@
 			<artifactId>openpdf</artifactId>
 			<version>1.3.30</version>
 		</dependency>
+
+
+		<!-- Bộ chuyển đổi JSON mặc định dùng cho Spring Boot Web -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
+		<!-- Nếu bạn dùng Spring Boot Starter Web thì thêm hoặc kiểm tra có dòng này: -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+
+
 
 
 
