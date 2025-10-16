@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login.tsx';
 import Editor from './pages/Editor.tsx';
+// Sau này chúng ta sẽ thêm Dashboard ở đây
 
 export default function App() {
     return (
@@ -12,6 +13,7 @@ export default function App() {
 
                 <Route path="/login" element={<Login />} />
                 <Route path="/editor" element={<Editor />} />
+                {/* <Route path="/dashboard" element={<Dashboard />} /> */}
             </Routes>
         </BrowserRouter>
     );
