@@ -22,5 +22,6 @@ api.interceptors.request.use(
 // Định nghĩa các hàm gọi API
 export const loginUser = (credentials: any) => api.post('/auth/login', credentials);
 // (Sau này chúng ta sẽ thêm các hàm khác ở đây)
+export const registerUser = (userData: any) => api.post('/auth/register', userData); // dangky
 
 export default api;

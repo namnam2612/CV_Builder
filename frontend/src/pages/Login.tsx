@@ -22,7 +22,7 @@ export default function Login() {
             localStorage.setItem('jwt_token', token);
 
             // Chuyển hướng đến trang editor sau khi đăng nhập thành công
-            navigate('/editor');
+            navigate('/dashboard');
 
         } catch (err) {
             setError('Tên đăng nhập hoặc mật khẩu không đúng.');
@@ -62,6 +62,13 @@ export default function Login() {
                         Đăng nhập
                     </button>
                 </form>
+                {/*  ĐOẠN CODE ĐƯỢC THÊM VÀO Ở ĐÂY */}
+                <p className="text-center mt-4 text-sm text-gray-600">
+                    Chưa có tài khoản?{' '}
+                    <a href="/register" className="font-medium text-blue-600 hover:underline">
+                        Đăng ký ngay
+                    </a>
+                </p>
             </div>
         </div>
     );

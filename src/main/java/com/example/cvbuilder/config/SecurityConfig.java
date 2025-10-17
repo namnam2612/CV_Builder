@@ -49,7 +49,7 @@ public class SecurityConfig {
                         // ✅ SỬA ĐỔI DÒNG NÀY
                         // Cho phép truy cập công khai vào API xác thực và tất cả các tài nguyên tĩnh
                         // (bao gồm cả index.html và các file JS/CSS của React)
-                        .requestMatchers("/api/auth/**", "/", "/index.html", "/assets/**", "/vite.svg").permitAll()
+                        .requestMatchers("/api/auth/**", "/", "/index.html", "/assets/**", "/vite.svg", "/dashboard").permitAll()
 
                         // API CV vẫn yêu cầu đăng nhập
                         .requestMatchers("/api/cv/**").authenticated()
