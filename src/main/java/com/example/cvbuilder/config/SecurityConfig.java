@@ -44,9 +44,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .cors(cors -> {}) // ✅ Bật CORS
+                .cors(cors -> {}) //  Bật CORS
                 .authorizeHttpRequests(auth -> auth
-                        // ✅ SỬA ĐỔI DÒNG NÀY
+                        //  SỬA ĐỔI DÒNG NÀY
                         // Cho phép truy cập công khai vào API xác thực và tất cả các tài nguyên tĩnh
                         // (bao gồm cả index.html và các file JS/CSS của React)
                         .requestMatchers("/api/auth/**", "/", "/index.html", "/assets/**", "/vite.svg", "/dashboard").permitAll()

@@ -23,5 +23,8 @@ api.interceptors.request.use(
 export const loginUser = (credentials: any) => api.post('/auth/login', credentials);
 // (Sau này chúng ta sẽ thêm các hàm khác ở đây)
 export const registerUser = (userData: any) => api.post('/auth/register', userData); // dangky
+// ...
+export const getMyCVs = () => api.get('/cv/my-cvs');
+// ...
 
 export default api;
