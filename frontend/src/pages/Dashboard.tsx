@@ -68,14 +68,38 @@ const LandingPageView = () => {
                     <div className="relative">
                         <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-md mx-auto">
                             <div className="flex items-center gap-4 mb-6">
-                                <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full"></div>
-                                <div><h3 className="text-xl font-bold text-gray-900">Alice Hart</h3><p className="text-gray-600">Giáo viên Toán</p></div>
+                                <div
+                                    className="w-20 h-20 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full"></div>
+                                <div><h3 className="text-xl font-bold text-gray-900">Alice Hart</h3><p
+                                    className="text-gray-600">Giáo viên Toán</p></div>
                             </div>
-                            <div className="bg-green-100 text-green-800 px-4 py-2 rounded-lg inline-flex items-center gap-2 mb-4"><span className="text-2xl font-bold">81%</span><span className="text-sm">Điểm CV</span></div>
-                            <div className="space-y-4 mb-6"><div className="bg-gray-50 p-4 rounded-lg"><h4 className="font-semibold text-gray-900 mb-2">Hồ sơ</h4><p className="text-sm text-gray-600">Giáo viên toán với hơn 8 năm kinh nghiệm...</p></div><div className="bg-gray-50 p-4 rounded-lg"><h4 className="font-semibold text-gray-900 mb-2">Lịch sử làm việc</h4><p className="text-sm text-gray-600">Trường Trung học Tuscaloosa County...</p></div></div>
-                            <div className="flex items-center justify-between"><div className="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg"><span className="text-sm font-semibold">✨ ATS Hoàn hảo</span></div><button className="text-blue-600 font-semibold hover:text-blue-700">+ Thêm kỹ năng</button></div>
+                            <div
+                                className="bg-green-100 text-green-800 px-4 py-2 rounded-lg inline-flex items-center gap-2 mb-4">
+                                <span className="text-2xl font-bold">81%</span><span className="text-sm">Điểm CV</span>
+                            </div>
+                            <div className="space-y-4 mb-6">
+                                <div className="bg-gray-50 p-4 rounded-lg"><h4
+                                    className="font-semibold text-gray-900 mb-2">Hồ sơ</h4><p
+                                    className="text-sm text-gray-600">Giáo viên toán với hơn 8 năm kinh nghiệm...</p>
+                                </div>
+                                <div className="bg-gray-50 p-4 rounded-lg"><h4
+                                    className="font-semibold text-gray-900 mb-2">Lịch sử làm việc</h4><p
+                                    className="text-sm text-gray-600">Trường Trung học Tuscaloosa County...</p></div>
+                            </div>
+                            <div className="flex items-center justify-between">
+                                <div className="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg"><span
+                                    className="text-sm font-semibold">✨ ATS Hoàn hảo</span></div>
+                                <button className="text-blue-600 font-semibold hover:text-blue-700">+ Thêm kỹ năng
+                                </button>
+                            </div>
                         </div>
-                        <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-white px-6 py-3 rounded-full shadow-lg"><p className="text-center"><span className="text-3xl font-bold text-blue-600">27,329</span><span className="text-gray-600 ml-2">CV được tạo hôm nay</span></p></div>
+                        <div
+                            className="absolute -bottom- 4.0 - left -translate-x-1/2 bg-white px-6 py-3 rounded-full shadow-lg">
+                            <p className="text-center">
+                                <span className="text-3xl font-bold text-blue-600">27,329</span>
+                                <span className="text-gray-600 ml-2">CV được tạo hôm nay</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
