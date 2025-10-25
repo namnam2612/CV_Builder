@@ -1,23 +1,21 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Dashboard from './Dashboard';
-import Login from './Login';
-import Register from './Register';
-import MyCVs from './MyCVs';
-import Editor from './Editor';
+// src/App.tsx
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login.tsx';
+import Register from './pages/Register.tsx';
+import LandingPage from './pages/LandingPage.tsx';
+import MyCVs from './pages/MyCVs.tsx';
+import Editor from './pages/Editor.tsx';
 
-function App() {
+export default function App() {
     return (
-        <Router>
+        <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Dashboard />} />
+                <Route path="/" element={<LandingPage />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/my-cvs" element={<MyCVs />} />
-                <Route path="/editor/new" element={<Editor />} />
-                <Route path="/editor/:id" element={<Editor />} />
+                <Route path="/editor/:cvId" element={<Editor />} />
             </Routes>
-        </Router>
+        </BrowserRouter>
     );
 }
-
-export default App;

@@ -93,17 +93,17 @@ public class JwtAuthFilter extends OncePerRequestFilter {  //OncePerRequestFilte
 
         String path = request.getServletPath();
 
-        //  Bỏ qua filter cho tất cả request KHÔNG bắt đầu bằng /api/
+        // ✅ Bỏ qua filter cho tất cả request KHÔNG bắt đầu bằng /api/
         if (!path.startsWith("/api/")) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        System.out.println(" [Filter] Yêu cầu tới: " + path);
+        System.out.println("📥 [Filter] Yêu cầu tới: " + path);
 
         // Bỏ qua filter cho endpoint không cần bảo mật
         if (path.startsWith("/api/auth")) {
-            System.out.println(" [Filter] Bỏ qua vì là endpoint auth");
+            System.out.println("➡️ [Filter] Bỏ qua vì là endpoint auth");
             filterChain.doFilter(request, response);
             return;
         }
@@ -115,23 +115,23 @@ public class JwtAuthFilter extends OncePerRequestFilter {  //OncePerRequestFilte
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             token = authHeader.substring(7); // Bỏ "Bearer "
-            System.out.println(" [Filter] Token nhận được: " + token);
+            System.out.println("🔐 [Filter] Token nhận được: " + token);
             try {
                 username = jwtService.extractUsername(token);
                 System.out.println("👤 [Filter] Username trích từ token: " + username);
             } catch (Exception e) {
-                System.out.println(" [Filter] Token không hợp lệ: " + e.getMessage());
+                System.out.println("❌ [Filter] Token không hợp lệ: " + e.getMessage());
             }
         } else {
-            System.out.println(" [Filter] Không tìm thấy header Authorization hoặc không đúng định dạng");
+            System.out.println("⚠️ [Filter] Không tìm thấy header Authorization hoặc không đúng định dạng");
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             User user = userRepository.findByUsername(username).orElse(null);
             if (user != null) {
-                System.out.println(" [Filter] User tồn tại trong DB: " + user.getUsername());
+                System.out.println("✅ [Filter] User tồn tại trong DB: " + user.getUsername());
                 boolean valid = jwtService.isTokenValid(token, user);
-                System.out.println("[Filter] Token hợp lệ: " + valid);
+                System.out.println("🛡️ [Filter] Token hợp lệ: " + valid);
                 if (valid) {
                     UserPrincipal principal = new UserPrincipal(user);
                     UsernamePasswordAuthenticationToken authToken =
@@ -139,10 +139,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {  //OncePerRequestFilte
 
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authToken);
-                    System.out.println(" [Filter] Xác thực thành công!");
+                    System.out.println("✔️ [Filter] Xác thực thành công!");
                 }
             } else {
-                System.out.println(" [Filter] Không tìm thấy user trong DB");
+                System.out.println("❌ [Filter] Không tìm thấy user trong DB");
             }
         }
 
