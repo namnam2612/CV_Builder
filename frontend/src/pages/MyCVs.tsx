@@ -24,22 +24,43 @@ export default function MyCVs() {
             try {
                 // ✅ Gọi API để lấy danh sách CV thật
                 const response = await getMyCVs();
-                setCvs(response.data); // Lưu dữ liệu thật vào state
+                console.log('CVs from API:', response.data); // Log để debug
+                const cvList = response.data.map((cv: any) => ({
+                    ...cv,
+                    id: Number(cv.id) // Đảm bảo id là số
+                }));
+                console.log('Processed CVs:', cvList);
+                setCvs(cvList); // Lưu dữ liệu đã xử lý vào state
             } catch (err: any) {
-                setError('Không thể tải danh sách CV.');
                 console.error("Failed to fetch CVs", err);
-                // Nếu token không hợp lệ hoặc hết hạn, đá về trang đăng nhập
-                if (err.response && (err.response.status === 401 || err.response.status === 403)) {
-                    localStorage.removeItem('jwt_token'); // Xóa token cũ
-                    navigate('/login');
+                // Build a helpful error message for the UI
+                let message = 'Không thể tải danh sách CV.';
+                if (err.response) {
+                    const status = err.response.status;
+                    const data = err.response.data;
+                    message += ` Server responded ${status}: ${typeof data === 'string' ? data : JSON.stringify(data)}`;
+                    // If unauthorized, clear token and redirect to login
+                    if (status === 401 || status === 403) {
+                        localStorage.removeItem('jwt_token');
+                        navigate('/login');
+                        return;
+                    }
+                } else if (err.request) {
+                    message += ' Không nhận được phản hồi từ server (kiểm tra backend hoặc CORS).';
+                } else {
+                    message += ` Lỗi: ${err.message}`;
                 }
+                setError(message);
             } finally {
                 setLoading(false);
             }
         };
 
         // Chỉ gọi API nếu người dùng đã đăng nhập (có token)
-        if (localStorage.getItem('jwt_token')) {
+        const token = localStorage.getItem('jwt_token');
+        console.log('JWT token present:', !!token);
+        if (token) {
+            console.log('JWT token (first 40 chars):', token?.substring(0, 40));
             fetchCVs();
         } else {
             // Nếu không có token, chuyển hướng về trang đăng nhập
@@ -47,9 +68,16 @@ export default function MyCVs() {
         }
     }, [navigate]); // Thêm navigate vào dependency array
 
-    // Hàm xử lý nút Xóa (sẽ làm sau)
-    const handleDelete = (cvId: number) => {
-        alert(`Sẽ xóa CV có ID: ${cvId} (chưa implement)`);
+    // Hàm xử lý nút Xóa (chỉ thông báo tạm thời, kiểm tra id trước khi xử lý)
+    const handleDelete = (cvId: any) => {
+        const idNum = Number(cvId);
+        if (!isNaN(idNum)) {
+            // TODO: gọi API xóa ở đây (DELETE /api/cv/{id})
+            alert(`Sẽ xóa CV có ID: ${idNum} (chưa implement)`);
+        } else {
+            console.error('handleDelete called with invalid id:', cvId);
+            alert('Không thể xóa: ID không hợp lệ.');
+        }
     };
 
     return (
@@ -78,7 +106,18 @@ export default function MyCVs() {
                                         <p className="text-gray-600">{cv.jobTitle || 'Chưa có vị trí'}</p>
                                     </div>
                                     <div className="mt-4 flex space-x-4">
-                                        <button onClick={() => navigate(`/editor/${cv.id}`)} className="text-sm text-blue-600 font-semibold hover:underline">Sửa</button>
+                                        <button 
+                                            onClick={() => {
+                                                if (cv && cv.id) {
+                                                    navigate(`/editor/${cv.id}`);
+                                                    console.log('Navigating to edit CV:', cv.id);
+                                                } else {
+                                                    console.error('Invalid CV ID:', cv);
+                                                }
+                                            }} 
+                                            className="text-sm text-blue-600 font-semibold hover:underline">
+                                            Sửa
+                                        </button>
                                         <button onClick={() => handleDelete(cv.id)} className="text-sm text-red-500 font-semibold hover:underline">Xóa</button>
                                     </div>
                                 </div>

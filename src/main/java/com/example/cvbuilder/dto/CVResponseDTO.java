@@ -24,6 +24,7 @@ public class CVResponseDTO {
     private String linkedIn;
     private String github;
     private String websiteUrl;
+    private String avatarUrl;
     private String dateOfBirth;
 
     // Constructor nhận từ entity CV
@@ -45,6 +46,7 @@ public class CVResponseDTO {
         this.linkedIn = cv.getLinkedIn();
         this.github = cv.getGithub();
         this.websiteUrl = cv.getWebsiteUrl();
+    this.avatarUrl = cv.getAvatarUrl();
         this.dateOfBirth = String.valueOf(cv.getDateOfBirth());
     }
 

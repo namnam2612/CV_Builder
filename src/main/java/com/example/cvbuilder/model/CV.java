@@ -24,21 +24,44 @@ public class CV {
     private String phone;
     private String address;
     private LocalDate dateOfBirth;
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
     private String avatarUrl;
 
     // ===== Mục tiêu và vị trí =====
     private String jobTitle;
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String careerObjective;
 
     // ===== Tóm tắt bản thân =====
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String profileSummary;
 
     // ===== Nội dung chính =====
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String experience;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String education;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String skills;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String certifications;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String projects;
+
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String languages;
 
     // ===== Mạng xã hội / liên kết =====

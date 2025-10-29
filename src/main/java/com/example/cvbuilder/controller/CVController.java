@@ -1,10 +1,8 @@
 package com.example.cvbuilder.controller;
 import com.example.cvbuilder.model.CV;
-import com.example.cvbuilder.model.User;
 import com.example.cvbuilder.service.CVService;
 import com.example.cvbuilder.service.PdfExportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
@@ -154,7 +152,5 @@ public class CVController {
                 })
                 .orElse(ResponseEntity.notFound().build());
     }
-
-
-
+    
 }

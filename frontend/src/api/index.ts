@@ -25,6 +25,20 @@ export const loginUser = (credentials: any) => api.post('/auth/login', credentia
 export const registerUser = (userData: any) => api.post('/auth/register', userData); // dangky
 // ...
 export const getMyCVs = () => api.get('/cv/my-cvs');
+export const createCV = (cvData: any) => api.post('/cv', cvData);
+export const getCVById = (id: number) => {
+    console.log('Getting CV with ID:', id);
+    return api.get(`/cv/${id}`);
+};
+export const updateCV = (id: number, cvData: any) => {
+    console.log('Updating CV with ID:', id);
+    return api.put(`/cv/${id}`, cvData);
+};
+export const uploadAvatar = (file: File) => {
+    const form = new FormData();
+    form.append('file', file);
+    return api.post('/upload', form, { headers: { 'Content-Type': 'multipart/form-data' } });
+}
 // ...
 
 export default api;

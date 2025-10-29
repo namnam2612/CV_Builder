@@ -203,13 +203,7 @@ const LandingPageView = ({ isLoggedIn, onLogout }: { isLoggedIn: boolean; onLogo
                                     <span className="text-gray-600 ml-2 text-sm">CV tạo hôm nay</span>
                                 </p>
                             </div>
-                            
-                            <div className="absolute -bottom-4 -left-4 bg-white px-6 py-3 rounded-full shadow-lg">
-                                <p className="text-center flex items-center gap-2">
-                                    <Heart className="w-4 h-4 text-red-500" />
-                                    <span className="text-sm text-gray-600">Được yêu thích</span>
-                                </p>
-                            </div>
+
                         </div>
                     </div>
                 </div>
